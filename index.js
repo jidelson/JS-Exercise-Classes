@@ -41,6 +41,25 @@ class Airplane {
 */
 
 class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+
+eat(someFood){
+  if (this.stomach.length < 10) {
+    this.stomach.push(someFood); 
+  }
+}
+
+poop(){
+  this.stomach = []
+}
+
+toString(){
+  return `${this.name} and ${this.age}`
+}
 
 }
 
@@ -59,7 +78,33 @@ class Person {
 */
 
 class Car {
+constructor(model, milesPerGallon){
+this.model = model;
+this.milesPerGallon = milesPerGallon;
+this.tank = 0;
+this.odometer = 0;
+}
 
+
+fill(gallons){
+this.tank = this.tank + gallons;
+}
+
+drive(distance){
+const gallonsNeeded = distance / this.milesPerGallon;
+const fuelLeft = this.tank - gallonsNeeded;
+const willWeMakeIt = fuelLeft >= 0;
+  if(willWeMakeIt === true){
+    this.odometer = this.odometer + distance;
+    this.tank = fuelLeft;
+  }
+  let outOfFuel;
+  if(willWeMakeIt === false){
+    outOfFuel = distance + fuelLeft;
+    this.tank = 0;
+    return `I ran out of fuel at ${outOfFuel} miles! being ${this.odometer}`
+  }
+}
 }
 
 /*
